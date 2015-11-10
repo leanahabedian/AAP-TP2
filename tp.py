@@ -46,7 +46,7 @@ def generate_only_one_random_forest(X_train, X_test, y_train, y_test, label, est
 
 # Armo el listado de imagenes disponibles.
 IMGDB = 'train'
-NUMIMAGES = 5000
+NUMIMAGES = 10000
 filenames_cats = ['%s/cat.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
 filenames_dogs = ['%s/dog.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
 
