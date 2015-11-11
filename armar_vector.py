@@ -153,5 +153,17 @@ class ArmarVector():
   # armar_vector_dark_pix_2x2 no suma
   # armar_vector_color empeora mucho
 
+  def armar_vector_surf(self,):
+    img = cv2.imread(self.filename)
+
+    im = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    print dir(cv2)
+    surfDetector = cv2.surf(400)
+    surfDescriptorExtractor = cv2.DescriptorExtractor_create("SURF")
+    kp = surfDetector.detect(im)
+    (kp, des) = surfDescriptorExtractor.compute(im,kp)
+
+    print len(kp)
+    print des.shape
 
 

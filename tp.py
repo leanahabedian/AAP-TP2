@@ -46,7 +46,7 @@ def generate_only_one_random_forest(X_train, X_test, y_train, y_test, label, est
 
 # Armo el listado de imagenes disponibles.
 IMGDB = 'train'
-NUMIMAGES = 10000
+NUMIMAGES = 1
 filenames_cats = ['%s/cat.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
 filenames_dogs = ['%s/dog.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
 
@@ -65,7 +65,8 @@ for filename in filenames_cats:
   #data[filename]  = av.armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping()
   #data[filename]  = av.armar_vector_dark_pix_5x5_color_sin_overlapping()
   #data[filename]  = av.armar_vector_mahotas()
-  data[filename]  = av.armar_vector_mix()
+  #data[filename]  = av.armar_vector_mix()
+  data[filename]  = av.armar_vector_surf()
   y.append(0)
 
 for filename in filenames_dogs:
@@ -78,7 +79,8 @@ for filename in filenames_dogs:
   #data[filename]  = av.armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping()
   #data[filename]  = av.armar_vector_dark_pix_5x5_color_sin_overlapping()
   #data[filename]  = av.armar_vector_mahotas()
-  data[filename]  = av.armar_vector_mix()
+  #data[filename]  = av.armar_vector_mix()
+  data[filename]  = av.armar_vector_surf()
   y.append(1)
 
 # Preparo la matriz con los datos de entrenamiento.
