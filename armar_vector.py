@@ -33,7 +33,7 @@ class ArmarVector():
     return 1 if color_pix > 200 else 0
 
     # adding the darkness of a 2x2 frame
-  def armar_vector_dark_pix_2x2(self, ):
+  def armar_vector_claro_oscuro_2x2(self, ):
     res = [0 for i in xrange(0,5)]
     img = cv2.imread(self.filename,0)
     equ = cv2.equalizeHist(img)
@@ -44,7 +44,7 @@ class ArmarVector():
     return res
 
 # adding the darkness of a 5x5 frame
-  def armar_vector_dark_pix_5x5_claro_oscuro(self, ):
+  def armar_vector_claro_oscuro_5x5(self, ):
     res = [0 for i in xrange(0,26)]
     img = cv2.imread(self.filename,0)
     equ = cv2.equalizeHist(img)
@@ -56,8 +56,8 @@ class ArmarVector():
         res[p] += 1
     return res
 
-# adding the darkness of a 5x5 frame
-  def armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping(self, ):
+# adding the darkness of a 5x5 frame without overlapping
+  def armar_vector_claro_oscuro_5x5_sin_overlapping(self, ):
     res = [0 for i in xrange(0,26)]
     img = cv2.imread(self.filename,0)
     equ = cv2.equalizeHist(img)
@@ -104,7 +104,7 @@ class ArmarVector():
     return min_dist
 
 # adding the darkness of a 5x5 frame
-  def armar_vector_dark_pix_5x5_color_sin_overlapping(self, ):
+  def armar_vector_color_5x5_sin_overlapping(self, ):
     im = Image.open(self.filename)
     pixels = im.load()
     # texture tiles
@@ -150,20 +150,5 @@ class ArmarVector():
 
   def armar_vector_mix(self, ):
     return self.armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping() + self.armar_vector_mahotas().tolist()
-  # armar_vector_dark_pix_2x2 no suma
-  # armar_vector_color empeora mucho
-
-  def armar_vector_surf(self,):
-    img = cv2.imread(self.filename)
-
-    im = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    print dir(cv2)
-    surfDetector = cv2.surf(400)
-    surfDescriptorExtractor = cv2.DescriptorExtractor_create("SURF")
-    kp = surfDetector.detect(im)
-    (kp, des) = surfDescriptorExtractor.compute(im,kp)
-
-    print len(kp)
-    print des.shape
 
 

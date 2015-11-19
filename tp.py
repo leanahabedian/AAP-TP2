@@ -46,9 +46,10 @@ def generate_only_one_random_forest(X_train, X_test, y_train, y_test, label, est
 
 # Armo el listado de imagenes disponibles.
 IMGDB = 'train'
-NUMIMAGES = 1
+NUMIMAGES = 12500
 filenames_cats = ['%s/cat.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
 filenames_dogs = ['%s/dog.%s.jpg' % (IMGDB, str(i))  for i in range(NUMIMAGES)]
+print"Amount of images per category:", NUMIMAGES
 
 # Extraigo el vector de atributos de cada imagen, y lo guardo en
 # un diccionario data[filename] --> vector_atributos
@@ -58,21 +59,20 @@ y = []
 for filename in filenames_cats:
 
   av = ArmarVector(filename)
-  #data[filename] = av.armar_vector_gris()
+  data[filename] = av.armar_vector_gris()
   #data[filename] = av.armar_vector_color()
   #data[filename]  = av.armar_vector_dark_pix_2x2()
-  #data[filename]  = av.armar_vector_dark_pix_5x5_claro_oscuro()
-  #data[filename]  = av.armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping()
-  #data[filename]  = av.armar_vector_dark_pix_5x5_color_sin_overlapping()
+  #data[filename]  = av.armar_vector_claro_oscuro_5x5()
+  #data[filename]  = av.armar_vector_claro_oscuro_5x5_sin_overlapping()
+  #data[filename]  = av.armar_vector_color_5x5_sin_overlapping()
   #data[filename]  = av.armar_vector_mahotas()
   #data[filename]  = av.armar_vector_mix()
-  data[filename]  = av.armar_vector_surf()
   y.append(0)
 
 for filename in filenames_dogs:
 
   av = ArmarVector(filename)
-  #data[filename] = av.armar_vector_gris()
+  data[filename] = av.armar_vector_gris()
   #data[filename] = av.armar_vector_color()
   #data[filename]  = av.armar_vector_dark_pix_2x2()
   #data[filename]  = av.armar_vector_dark_pix_5x5_claro_oscuro()
@@ -80,13 +80,12 @@ for filename in filenames_dogs:
   #data[filename]  = av.armar_vector_dark_pix_5x5_color_sin_overlapping()
   #data[filename]  = av.armar_vector_mahotas()
   #data[filename]  = av.armar_vector_mix()
-  data[filename]  = av.armar_vector_surf()
   y.append(1)
 
 # Preparo la matriz con los datos de entrenamiento.
 X = [data[filename] for filename in filenames_dogs] + [data[filename] for filename in filenames_cats]
 
-print "amount of attributes",len(X[0])
+print "amount of attributes extracted",len(X[0])
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.3, random_state=0)
 generate_many_random_forest(X_train, X_test, y_train, y_test, "[Random Forest Mixed]", 100)
 
