@@ -5,14 +5,6 @@ import shutil, os
 from ensemble_classifier import EnsembleClassifier
 from armar_vector import ArmarVector
 
-
-try:
-    shutil.rmtree("out")
-except:
-    pass
-os.mkdir("out")
-
-
 # generate many random forest
 def generate_many_random_forest(X_train, X_test, y_train, y_test, label, estimators, leafs=1):
 
