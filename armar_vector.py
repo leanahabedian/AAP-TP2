@@ -149,6 +149,6 @@ class ArmarVector():
     return mh.features.lbp(img, 8, 12, ignore_zeros=False) # 8 12
 
   def armar_vector_mix(self, ):
-    return self.armar_vector_dark_pix_5x5_claro_oscuro_sin_overlapping() + self.armar_vector_mahotas().tolist()
+    return self.armar_vector_claro_oscuro_5x5_sin_overlapping() + self.armar_vector_mahotas().tolist()
 
 
